@@ -1,2 +1,2 @@
 #!/bin/bash
-cp -u *.html --parents
+cp -u *.html ../holberton-system_engineering-devops
