@@ -3,5 +3,5 @@
 
 for i in {0..9}
 do
-  echo "Holberton School"
+echo "Holberton School"
 done
