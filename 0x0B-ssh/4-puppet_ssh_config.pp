@@ -1,10 +1,12 @@
 # SSH client configuration via Puppet 
-user {'ubuntu':
+file_line { 'NO passwd':
 ensure => 'present',
+path   => '/etc/ssh/ssh_config',
+line   => 'PasswordAuthentication no',
 }
-ssh-authorized_keys {'ubuntu@34.74.253.204'
+
+file_line { 'add public key':
 ensure => 'present',
-user =>'ubuntu',
-type => 'ssh-rsa',
-key => '~/.ssh/holberton',
+path   => '/etc/ssh/ssh_config',
+line   => 'IdentityFile ~/.ssh/holberton',
 }
