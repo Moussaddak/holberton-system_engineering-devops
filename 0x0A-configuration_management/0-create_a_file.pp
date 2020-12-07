@@ -1,3 +1,5 @@
+# Create a file using puppet
+
 file { '/tmp/holberton':
   content => 'I love Puppet',
   mode    => '0744',
