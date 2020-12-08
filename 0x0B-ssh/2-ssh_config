@@ -22,7 +22,7 @@ Host *
 #   ForwardX11Trusted yes
 #   RhostsRSAAuthentication no
 #   RSAAuthentication yes
-#   PasswordAuthentication yes
+    PasswordAuthentication no
 #   HostbasedAuthentication no
 #   GSSAPIAuthentication no
 #   GSSAPIDelegateCredentials no
@@ -36,6 +36,7 @@ Host *
 #   IdentityFile ~/.ssh/identity
 #   IdentityFile ~/.ssh/id_rsa
 #   IdentityFile ~/.ssh/id_dsa
+    IdentityFile ~/.ssh/holberton
 #   Port 22
 #   Protocol 2,1
 #   Cipher 3des
@@ -54,5 +55,3 @@ Host *
     GSSAPIDelegateCredentials no
     config.ssh.forward_agent = true
     config.ssh.forward_x11 = true
-    PasswordAuthentication no
-    IdentityFile ~/.ssh/holberton
