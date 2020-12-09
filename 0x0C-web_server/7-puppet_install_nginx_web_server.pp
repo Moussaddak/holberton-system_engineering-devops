@@ -13,7 +13,7 @@ file_line { '/etc/nginx/sites-available/default':
   ensure => 'present',
   path   => '/etc/nginx/sites-available/default',
   after  => 'listen 80 default_server;',
-  line   => 'location /redirect_me {\n\t\terror_page 404 =301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}',
+  line   => 'rewrite ^/redirect_me https://www.youtube.com/ permanent;',
 }
 
 file { '/var/www/html/index.nginx-debian.html':
