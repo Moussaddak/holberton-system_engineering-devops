@@ -21,9 +21,5 @@ printf %s "server {
                 root /var/www/html/;
                 internal;
         }
-
-	location / {
-                try_files $uri $uri/ =404;
-        }
 }" > /etc/nginx/sites-available/default
 service nginx start
