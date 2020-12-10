@@ -14,7 +14,9 @@ printf %s "server {
         location /redirect_me {
                 error_page 404 =301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
         }
-
-        error_page 404 /404.html;
+	
+	location / {
+		error_page 404 /404.html;
+	}
 }" > /etc/nginx/sites-available/default
 service nginx start
