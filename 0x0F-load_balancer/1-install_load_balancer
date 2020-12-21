@@ -7,7 +7,7 @@ add-apt-repository -y ppa:vbernat/haproxy-1.6
 apt-get install -y haproxy=1.6.\*
 
 # Enable HAProxy to be started by the init script
-printf "%s\n" >> /etc/default/haproxy
+printf "%s\n" "ENABLED=1" >> /etc/default/haproxy
 
 # Distribute requests using a roundrobin algorithm
 printf "%s\n"\ "
