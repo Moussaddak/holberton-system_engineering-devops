@@ -1,8 +1,24 @@
 #!/usr/bin/env bash
 # Double the number of webservers
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-sudo sed -i "16i\\\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf
-echo "Holberton School" | sudo tee /var/www/html/index.html
-sudo service nginx start
+apt-get -y update
+apt-get -y install nginx
+echo "Holberton School" > /var/www/html/index.nginx-debian.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+printf %s "server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+	
+	server_name 
+	root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+	
+	error_page 404 /404.html;
+        
+	add_header X-Served-By $HOSTNAME [always];
+	
+	location /redirect_me {
+                error_page 404 =301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+        }
+}" > /etc/nginx/sites-available/default
+service nginx start
