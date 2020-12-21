@@ -1,9 +1,25 @@
 #!/usr/bin/env bash
-# Install and configure HAproxy on your lb-01 server
+# Install / Configure HAproxy on your lb-01 server
 
-sudo add-apt-repository ppa:vbernat/haproxy-1.8
-sudo apt-get update
-sudo apt-get install haproxy
-sudo sed -i "22i\frontend http_front\n\tbind *:80\n\tmode http\n\tdefault_backend http_back\n" /etc/haproxy/haproxy.cfg
-sudo sed -i "27i\backend http_back\n\tbalance roundrobin\n\tnode http\n\tserver 1414-web-01 34.74.253.204:80 check\n\tserver 1414-web-02 34.75.174.79:80 check\n" /etc/haproxy/haproxy.cfg
-sudo service haproxy restart
+apt-get update
+apt-get install -y --no-install-recommends software-properties-common
+add-apt-repository -y ppa:vbernat/haproxy-1.6
+apt-get install -y haproxy=1.6.\*
+
+# Enable HAProxy to be started by the init script
+printf "%s\n" >> /etc/default/haproxy
+
+# Distribute requests using a roundrobin algorithm
+printf "%s\n"\ "
+frontend www.meddebmoussadak.tech
+        bind *:80
+        mode http
+        default_backend web_servers
+
+backend web_servers
+        balance roundrobin
+        server 1414-web-01 35.237.13.104:80 check
+        server 1414-web-02 35.231.190.248:80 check
+" >> /etc/haproxy/haproxy.cfg
+
+service haproxy start
