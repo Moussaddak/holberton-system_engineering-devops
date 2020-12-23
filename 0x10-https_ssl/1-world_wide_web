@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Display information about subdomain
+
+Display_info()
+{
+        DEST=$(dig "$2.$1" | awk 'NR==14 {print $NF}')
+        REC=$(dig "$2.$1" | awk 'NR==14 {print $4}')
+        echo "The subdomain $2 is a $REC record and points to $DEST"
+}
+
+if [ $# -eq 2 ]; then
+        Display_info "$1" "$2"
+        exit
+fi
+for SUB in www lb-01 web-01 web-02; do
+        Display_info "$1" "$SUB"
+done
