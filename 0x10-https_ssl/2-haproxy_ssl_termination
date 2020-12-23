@@ -45,4 +45,3 @@ backend web_servers
         balance roundrobin
         server 1414-web-01 35.237.13.104:80 check
         server 1414-web-02 35.231.190.248:80 check
-        option httpchk
