@@ -18,4 +18,4 @@ if __name__ == "__main__":
     print('Employee {} is done with tasks({}/{}):'.
           format(employee_name, len(Done), len(result)))
     for Task in Done:
-        print('\t{}'.format(Task.get('title')))
+        print('\t {}'.format(Task.get('title')))
