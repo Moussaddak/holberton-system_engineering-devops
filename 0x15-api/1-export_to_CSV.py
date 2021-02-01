@@ -6,7 +6,7 @@ from sys import argv
 
 if __name__ == "__main__":
     url = 'https://jsonplaceholder.typicode.com'
-    USER_ID = 2  # argv[1]
+    USER_ID = argv[1]
     """ Extract Employee name """
     user = requests.get('{}/users/{}'.format(url, USER_ID)).json()
     USERNAME = user.get('username')
