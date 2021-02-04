@@ -23,7 +23,7 @@ def recurse(subreddit, hot_list=[], after=None):
         for title in data:
             hot_list.append(title.get('data').get('title'))
         if after:
-            return recurse(subreddit, hot_list, after)
+            recurse(subreddit, hot_list, after)
         return hot_list
     except AttributeError:
         return None
