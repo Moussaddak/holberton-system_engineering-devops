@@ -20,7 +20,7 @@ def recurse(subreddit, hot_list=[], count=0, after=None):
                          allow_redirects=False).json()
         data = r.get('data').get('children')
         after = r.get('after')
-        count += r.get('dist')
+        count += r.get('data').get('dist')
         for title in data:
             hot_list.append(title.get('data').get('title'))
         if after:
